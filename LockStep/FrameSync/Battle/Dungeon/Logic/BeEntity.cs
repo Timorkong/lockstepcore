@@ -8,11 +8,7 @@ public class BeEntity
 
     public BeScence beScence = null;
 
-    public float speed = 1;
-
-    public Vector3 moveDir = new Vector3();
-
-    public Vector3 pos = new Vector3();
+    public PlayerStateManager psm = null;
 
     public int seat = 0;
 
@@ -22,20 +18,27 @@ public class BeEntity
 
         this.seat = seat;
 
+        psm = PlayerStateManager.GetPool();
+
+        psm.InitStateManager(this);
+
         beScence.AddEntity(this);
     }
 
-    public void SetMoveDir(float x , float y)
+    public void SetMoveDir(float x , float z)
     {
-        moveDir.x = x;
+        psm.playerStateData.moveDir.x.SetFloat(x);
 
-        moveDir.z = y;
+        psm.playerStateData.moveDir.z.SetFloat(z);
 
-        moveDir.Normalize();
-    }
+        psm.playerStateData.moveDir.NormalizeSelf();
+    }   
 
     public void Update()
     {
-        pos += moveDir * speed;
+        if(psm != null)
+        {
+            psm.Update();
+        }
     }
 }

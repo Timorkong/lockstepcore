@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class GeEntity
 {
@@ -10,6 +11,10 @@ public class GeEntity
 
     public GameObject model = null;
 
+    public Animator animator = null;
+
+    protected string curClipName = "";
+
     public GeEntity(BeEntity beEntity, GeScence geScence)
     {
         this.beEntity = beEntity;
@@ -18,17 +23,45 @@ public class GeEntity
 
         geScence.geEntities.Add(this);
 
-        var go = Resources.Load<GameObject>("Char/Char1/Char1");
+        Init();
+    }
+
+    void Init()
+    {
+        GameApplaction.Instance.StartCoroutine(IE_LoadPlayer());
+    }
+
+    IEnumerator IE_LoadPlayer()
+    {
+        var op = Addressables.LoadAssetAsync<GameObject>("Char1");
+
+        yield return op;
+
+        var go = op.Result;
 
         model = GameObject.Instantiate(go);
 
-        model.transform.localPosition = beEntity.pos;
+        model.transform.localPosition = beEntity.psm.playerStateData.pos.EncodeVec3();
+
+        animator = model.GetComponent<Animator>();
     }
 
     public void Update()
     {
-        if (model == null) return;
+        if (model == null || animator == null) return;
 
-        model.transform.localPosition = beEntity.pos;
+        model.transform.localPosition = beEntity.psm.playerStateData.pos.EncodeVec3();
+
+        if (curClipName != beEntity.psm.playerStateData.ClipName)
+        {
+            if (Global.Setting.ShowPlayerStateLog)
+            {
+                Debug.LogError(string.Format("GeEntity form {0} to {1}", curClipName, beEntity.psm.playerStateData.ClipName));
+            }
+
+            curClipName = beEntity.psm.playerStateData.ClipName;
+
+            animator.Play(curClipName);
+        }
     }
 }

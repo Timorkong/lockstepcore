@@ -12,7 +12,7 @@ public partial class command_req
     {
         CMD_ENTER_GAME_REQ req = new CMD_ENTER_GAME_REQ();
         req.data = new PROTOCOL_COMMON.pre_battle_data();
-        req.data.level_name = "Level1";
+        req.data.level_name = "Level1.level";
         NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_ENTER_GAME_REQ);
     }
 

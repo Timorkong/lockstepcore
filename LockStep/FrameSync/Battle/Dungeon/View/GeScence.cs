@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 public class GeScence
@@ -28,9 +29,18 @@ public class GeScence
 
     private void Init()
     {
-        SceneManager.Instance.onLoadScence += OnSceneLoad;
+        GameApplaction.Instance.StartCoroutine(this.IE_LoadScene());
+    }
 
-        SceneManager.Instance.LoadScence(BattleMain.data.level_name);
+    IEnumerator IE_LoadScene()
+    {
+        var op = Addressables.LoadSceneAsync(BattleMain.data.level_name);
+
+        yield return op;
+
+        var scence = op.Result.Scene;
+
+        this.OnSceneLoad(scence);
     }
 
     public void Update()
@@ -43,7 +53,7 @@ public class GeScence
         }
     }
 
-    void OnSceneLoad(Scene scene, LoadSceneMode move)
+    void OnSceneLoad(Scene scene)
     {
         mCanUpdate = true;
 

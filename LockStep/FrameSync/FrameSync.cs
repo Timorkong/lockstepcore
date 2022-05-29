@@ -50,7 +50,7 @@ public class FrameSync : Singleton<FrameSync>
     {
         this.syncMode = syncMode;
 
-        Debug.LogError("set sync mode = " + syncMode);
+        Debug.Log("set sync mode = " + syncMode);
     }
 
     public void UpdateFrame()
@@ -177,7 +177,7 @@ public class FrameSync : Singleton<FrameSync>
     {
         int framesNeedUpdate = (int)(serverFrame - curFrame);
 
-        framesNeedUpdate = Mathf.Clamp(framesNeedUpdate, 0, 100);
+        framesNeedUpdate = Mathf.Clamp(framesNeedUpdate, 0, 3);
 
         while (framesNeedUpdate >= 0 && frameQueue.Count > 0)
         {

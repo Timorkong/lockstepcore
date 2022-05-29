@@ -12,5 +12,7 @@ public class GlobalSetting : ScriptableObject
 
     public bool ShowSequence = false;
 
+    public bool ShowPlayerStateLog = false;
+
     public EnumSyncMode SyncMode = EnumSyncMode.SyncFrame;
 }
