@@ -25,11 +25,11 @@ public class BeEntity
         beScence.AddEntity(this);
     }
 
-    public void SetMoveDir(float x , float z)
+    public void SetMoveDir(float x , float y)
     {
         psm.playerStateData.moveDir.x.SetFloat(x);
 
-        psm.playerStateData.moveDir.z.SetFloat(z);
+        psm.playerStateData.moveDir.y.SetFloat(y);
 
         psm.playerStateData.moveDir.NormalizeSelf();
     }   

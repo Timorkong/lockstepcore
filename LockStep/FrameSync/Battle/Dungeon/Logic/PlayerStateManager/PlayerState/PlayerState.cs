@@ -45,7 +45,7 @@ public class IdleState : BasePlayerState
     {
         base.Update();
 
-        if (psm.playerStateData.moveDir.x.IsZero() == false || psm.playerStateData.moveDir.z.IsZero() == false)
+        if (psm.playerStateData.moveDir.x.IsZero() == false || psm.playerStateData.moveDir.y.IsZero() == false)
         {
             psm.SwitchStete(PlayerStateType.Walk);
 
@@ -81,7 +81,7 @@ public class WalkState : BasePlayerState
     {
         base.Update();
 
-        if(psm.playerStateData.moveDir.x.IsZero() && psm.playerStateData.moveDir.z.IsZero())
+        if(psm.playerStateData.moveDir.x.IsZero() && psm.playerStateData.moveDir.y.IsZero())
         {
             psm.SwitchStete(PlayerStateType.Idle);
 

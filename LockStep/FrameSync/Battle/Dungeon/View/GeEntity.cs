@@ -44,6 +44,11 @@ public class GeEntity
         model.transform.localPosition = beEntity.psm.playerStateData.pos.EncodeVec3();
 
         animator = model.GetComponent<Animator>();
+
+        if(beEntity.seat == GameApplaction.Instance.playerSeat)
+        {
+            FollowPlayer.Instance.SetMainPlayer(this);
+        }
     }
 
     public void Update()
