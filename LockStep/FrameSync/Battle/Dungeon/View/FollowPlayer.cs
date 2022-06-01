@@ -30,5 +30,6 @@ public class FollowPlayer : MonoSingleton<FollowPlayer>
 
         pos.x = targetPos.x.rawVal;
         pos.y = targetPos.y.rawVal;
+        transform.position = pos;
     }
 }

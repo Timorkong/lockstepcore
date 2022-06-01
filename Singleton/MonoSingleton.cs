@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class MonoSingleton<T> : MonoBehaviour where T : UnityEngine.Component
 {
+    public bool DontDestroy = true;
+
     /// <summary>
     /// 单例
     /// </summary>
@@ -37,7 +39,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : UnityEngine.Com
             m_instance = this as T;
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        if(DontDestroy) DontDestroyOnLoad(this.gameObject);
     }
 
     protected virtual void OnApplicationQuit()
