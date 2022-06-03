@@ -59,6 +59,8 @@ public class RoomList : SingleWindow<RoomList>
     {
         Hide();
 
+        command_req.CMD_CREATE_ROOM_REQ();
+
         RoomInfo.Instance.Show();
     }
 

@@ -12,8 +12,6 @@ public class RoomInfo : SingleWindow<RoomInfo>
 
     public Text RoomName;
 
-    public override CMD ShowCMD =>  CMD.CMD_CREATE_ROOM_RSP;
-
     protected override void Awake()
     {
         base.Awake();
@@ -42,8 +40,6 @@ public class RoomInfo : SingleWindow<RoomInfo>
     public override void Request()
     {
         base.Request();
-
-        command_req.CMD_CREATE_ROOM_REQ();
     }
 
     public void OnClickClose()

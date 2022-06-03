@@ -13,6 +13,10 @@ public partial class command_rsp
     {
         CMD_ENTER_GAME_RSP rsp = NetUtil.DeserializeMsg<CMD_ENTER_GAME_RSP>(msg);
 
+        RoomInfo.Instance.Hide();
+
+        Loading.Instance.Show();
+
         BattleMain.data = rsp.data;
 
         ClientSystemManager.Instance.SwitchSystem<ClientSystemBattle>();
