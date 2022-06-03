@@ -41,6 +41,8 @@ public class GeEntity
 
         model = GameObject.Instantiate(go);
 
+        model.layer = LayerMask.NameToLayer("Level");
+
         model.transform.localPosition = beEntity.psm.playerStateData.pos.EncodeVec3();
 
         animator = model.GetComponent<Animator>();

@@ -15,4 +15,8 @@ public class GlobalSetting : ScriptableObject
     public bool ShowPlayerStateLog = false;
 
     public EnumSyncMode SyncMode = EnumSyncMode.SyncFrame;
+
+    public string ip = "127.0.0.1";
+
+    public int port = 3333;
 }

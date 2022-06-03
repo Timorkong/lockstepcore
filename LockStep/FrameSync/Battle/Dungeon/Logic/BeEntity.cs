@@ -32,6 +32,7 @@ public class BeEntity
         psm.playerStateData.moveDir.y.SetFloat(y);
 
         psm.playerStateData.moveDir.NormalizeSelf();
+
     }   
 
     public void Update()

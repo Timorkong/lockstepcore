@@ -39,7 +39,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : UnityEngine.Com
             m_instance = this as T;
         }
 
-        if(DontDestroy) DontDestroyOnLoad(this.gameObject);
+        if(DontDestroy) GameObject.DontDestroyOnLoad(this.gameObject);
     }
 
     protected virtual void OnApplicationQuit()

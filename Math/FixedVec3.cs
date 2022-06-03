@@ -152,11 +152,11 @@ public class FixedVec3
 
     public FixedNumber Squart()
     {
-        var _x = FixedNumber.GetPool().Square();
+        var _x = FixedNumber.GetPool().CopyFrom(x).Square();
 
-        var _y = FixedNumber.GetPool().Square();
+        var _y = FixedNumber.GetPool().CopyFrom(y).Square();
 
-        var _z = FixedNumber.GetPool().Square();
+        var _z = FixedNumber.GetPool().CopyFrom(z).Square();
 
         _x = _x + _y + _z;
 

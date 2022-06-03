@@ -36,7 +36,7 @@ public class FixedNumber
 
     public FixedNumber SetWF(int val)
     {
-        rawVal = val / GloableLogic.VALUE_10000;
+        rawVal = val * 1.0f / GloableLogic.VALUE_10000;
 
         return this;
     }
