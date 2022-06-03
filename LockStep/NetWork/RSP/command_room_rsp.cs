@@ -59,6 +59,8 @@ public partial class command_rsp
             Debug.Log(string.Format("加入房间 seat = {0}", rsp.player_seat));
         }
 
+        RoomInfo.Instance.Show();
+
         RoomInfo.Instance.Refresh(rsp.room_info);
     }
 }
