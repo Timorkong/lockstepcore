@@ -25,6 +25,15 @@ public class FixedVec3
         return ret;
     }
 
+    public FixedVec3()
+    {
+        x = FixedNumber.GetPool();
+
+        y = FixedNumber.GetPool();
+
+        z = FixedNumber.GetPool();
+    }
+
     public void PoolRecover()
     {
         x.PoolRecover();
