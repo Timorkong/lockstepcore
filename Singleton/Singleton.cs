@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Singleton<T> where T: class, new()
+public class Singleton<T>
 {
     private static T s_instance;
 
@@ -25,7 +25,7 @@ public class Singleton<T> where T: class, new()
         if (Singleton<T>.s_instance != null)
         {
             (Singleton<T>.s_instance as Singleton<T>).UnInit();
-            Singleton<T>.s_instance = null;
+            Singleton<T>.s_instance = default(T);
         }
     }
 
