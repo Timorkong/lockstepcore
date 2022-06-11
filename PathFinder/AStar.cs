@@ -181,20 +181,20 @@ namespace PathFinder {
                 }
                 return grid;
             } catch (Exception e) {
-                   #if UNITY_EDITOR
-                Logger.LogError (string.Format ("Exception[{0}]  \n width:{1} height：{2} posx: {3}  posy: {4}",
-                    e.ToString (), _helperwidth, _helperHeight, x, y));
-                    #endif
+                //   #if UNITY_EDITOR
+                //Logger.LogError (string.Format ("Exception[{0}]  \n width:{1} height：{2} posx: {3}  posy: {4}",
+                //    e.ToString (), _helperwidth, _helperHeight, x, y));
+                //    #endif
                 return null;
             }
-        }
+        } 
 
         private bool IsCloseInObstacle<T> (Point point, T[] obstacle, int width, int height) {
 
             if(!obstacle[width * point.y + point.x].Equals (default (T))){
-#if UNITY_EDITOR     
-                Logger.LogError (string.Format ("寻路单位在障碍点上"));
-#endif
+//#if UNITY_EDITOR     
+//                Logger.LogError (string.Format ("寻路单位在障碍点上"));
+//#endif
                 return true;
             }
 
@@ -221,16 +221,16 @@ namespace PathFinder {
         private bool SearchPath<T> (T[] obstacle, int width, int height, Point pstart, Point pend) {
 
             if (pstart.x < 0 || pstart.y < 0 || pend.x < 0 || pend.y < 0) {
-                #if UNITY_EDITOR   
-                Logger.LogError (string.Format ("寻路坐标 小于0了  {0}-{1}-{2}-{3}-{4}-{5}", pstart.x, pstart.y, pend.x, pend.y,width,height));
-                #endif
+                //#if UNITY_EDITOR   
+                //Logger.LogError (string.Format ("寻路坐标 小于0了  {0}-{1}-{2}-{3}-{4}-{5}", pstart.x, pstart.y, pend.x, pend.y,width,height));
+                //#endif
                 return false;
             }
 
             if (pstart.x >= width || pstart.y >= height || pend.x>= width || pend.y>= height) {
-                #if UNITY_EDITOR   
-                Logger.LogError (string.Format ("寻路坐标 越界  {0}-{1}-{2}-{3}-{4}-{5}", pstart.x, pstart.y, pend.x, pend.y,width,height));
-                #endif
+                //#if UNITY_EDITOR   
+                //Logger.LogError (string.Format ("寻路坐标 越界  {0}-{1}-{2}-{3}-{4}-{5}", pstart.x, pstart.y, pend.x, pend.y,width,height));
+                //#endif
                 return false;
             }
 
