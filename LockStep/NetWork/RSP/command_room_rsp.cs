@@ -1,66 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cmd.ID;
-using PROTOCOL;
-using ProtoBuf;
-using PROTOCOL_ROOM;
+using PROTOCOLROOM;
 
 public partial class command_rsp 
 {
-    [MessageHandle((uint) CMD.CMD_ROOM_LIST_RSP)]
-    public static void CMD_ROOM_LIST_RSP(MsgData msg)
+    [MessageHandle((uint) CMD.RoomListRsp)]
+    public static void RoomListRsp(MsgData msg)
     {
-        CMD_ROOM_LIST_RSP rsp = NetUtil.DeserializeMsg<CMD_ROOM_LIST_RSP>(msg);
+        RoomListRsp rsp = NetUtil.DeserializeMsg<RoomListRsp>(msg);
 
-        RoomList.Instance.Refresh(rsp.room_list);
+        RoomList.Instance.Refresh(rsp.RoomList);
     }
 
-    [MessageHandle((uint)CMD.CMD_CREATE_ROOM_RSP)]
-    public static void CMD_CREATE_ROOM_RSP(MsgData msg)
+    [MessageHandle((uint)CMD.CreateRoomRsp)]
+    public static void CreateRoomRsp(MsgData msg)
     {
-        CMD_CREATE_ROOM_RSP rsp = NetUtil.DeserializeMsg<CMD_CREATE_ROOM_RSP>(msg);
+        CreateRoomRsp rsp = NetUtil.DeserializeMsg<CreateRoomRsp>(msg);
 
-        GameApplaction.Instance.playerSeat = rsp.player_seat;
+        GameApplaction.Instance.playerSeat = rsp.PlayerSeat;
 
         if (Global.Setting.ShowNetWorkLog)
         {
-            Debug.Log(string.Format("创建房间 player_seat = {0}", rsp.player_seat));
+            Debug.Log(string.Format("创建房间 player_seat = {0}", rsp.PlayerSeat));
         }
 
-        RoomInfo.Instance.Refresh(rsp.room_info);
+        RoomInfo.Instance.Refresh(rsp.RoomInfo);
     }
 
-    [MessageHandle((uint)CMD.CMD_LEAVE_ROOM_RSP)]
-    public static void CMD_LEAVE_ROOM_RSP(MsgData msg)
+    [MessageHandle((uint)CMD.LeaveRoomRsp)]
+    public static void LeaveRoomRsp(MsgData msg)
     {
-        CMD_LEAVE_ROOM_RSP rsp = NetUtil.DeserializeMsg<CMD_LEAVE_ROOM_RSP>(msg);
+        LeaveRoomRsp rsp = NetUtil.DeserializeMsg<LeaveRoomRsp>(msg);
 
-        RoomList.Instance.Refresh(rsp.room_list);
+        RoomList.Instance.Refresh(rsp.RoomList);
     }
 
-    [MessageHandle((uint)CMD.CMD_UPDATE_ROOM_INFO_NOTICE)]
-    public static void CMD_UPDATE_ROOM_INFO_NOTICE(MsgData msg)
+    [MessageHandle((uint)CMD.UpdateRoomInfoNotice)]
+    public static void UpdateRoomInfoNotice(MsgData msg)
     {
-        CMD_UPDATE_ROOM_INFO_NOTICE rsp = NetUtil.DeserializeMsg<CMD_UPDATE_ROOM_INFO_NOTICE>(msg);
+        UpdateRoomInfoNotice rsp = NetUtil.DeserializeMsg<UpdateRoomInfoNotice>(msg);
 
-        RoomInfo.Instance.Refresh(rsp.room_info);
+        RoomInfo.Instance.Refresh(rsp.RoomInfo);
     }
 
-    [MessageHandle((uint)CMD.CMD_JOIN_ROOM_RSP)]
-    public static void CMD_JOIN_ROOM_RSP(MsgData msg)
+    [MessageHandle((uint)CMD.JoinRoomRsp)]
+    public static void JoinRoomRsp(MsgData msg)
     {
-        CMD_JOIN_ROOM_RSP rsp = NetUtil.DeserializeMsg<CMD_JOIN_ROOM_RSP>(msg);
+        JoinRoomRsp rsp = NetUtil.DeserializeMsg<JoinRoomRsp>(msg);
 
-        GameApplaction.Instance.playerSeat = rsp.player_seat;
+        GameApplaction.Instance.playerSeat = rsp.PlayerSeat;
 
         if (Global.Setting.ShowNetWorkLog)
         {
-            Debug.Log(string.Format("加入房间 seat = {0}", rsp.player_seat));
+            Debug.Log(string.Format("加入房间 seat = {0}", rsp.PlayerSeat));
         }
 
         RoomInfo.Instance.Show();
 
-        RoomInfo.Instance.Refresh(rsp.room_info);
+        RoomInfo.Instance.Refresh(rsp.RoomInfo);
     }
 }

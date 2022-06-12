@@ -141,7 +141,7 @@ public class NetWorkSocket
 
     private bool isFrameSyncCmd(Cmd.ID.CMD cmd)
     {
-        if (cmd > Cmd.ID.CMD.CMD_FRAME_SYNC_MIN && cmd < Cmd.ID.CMD.CMD_FRAME_SYNC_MAX) return true;
+        if (cmd > Cmd.ID.CMD.FrameSyncMin && cmd < Cmd.ID.CMD.FrameSyncMax) return true;
         return false;
     }
 

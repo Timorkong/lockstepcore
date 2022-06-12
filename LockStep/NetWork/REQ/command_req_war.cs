@@ -1,40 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Reflection;
-using PROTOCOL;
-using PROTOCOL_WAR;
+using PROTOCOLWAR;
 
 public partial class command_req
 {
 
-    public static void CMD_ENTER_GAME_REQ()
+    public static void EnterGameReq()
     {
-        CMD_ENTER_GAME_REQ req = new CMD_ENTER_GAME_REQ();
-        req.data = new PROTOCOL_COMMON.pre_battle_data();
-        req.data.level_name = "Level1.level";
-        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_ENTER_GAME_REQ);
+        EnterGameReq req = new EnterGameReq();
+        req.Data = new PROTOCOLCOMMON.PreBattleData();
+        req.Data.LevelName = "Level1.level";
+        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.EnterGameReq);
     }
 
-    public static void CMD_START_GAME_REQ()
+    public static void StartGameReq()
     {
-        CMD_START_GAME_REQ req = new CMD_START_GAME_REQ();
-        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_START_GAME_REQ);
+        StartGameReq req = new StartGameReq();
+        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.StartGameReq);
     }
 
-    public static void CMD_WAR_MOVE_REQ(float x, float y)
+    public static void WarMove(float x, float y)
     {
-        CMD_WAR_MOVE req = new CMD_WAR_MOVE();
+        WarMove req = new WarMove();
 
         if (BattleMain.Instance.mBattle.mainBeEntity != null)
         {
-            req.seat = BattleMain.Instance.mBattle.mainBeEntity.seat;
+            req.Seat = BattleMain.Instance.mBattle.mainBeEntity.seat;
 
-            req.move_x = x;
+            req.MoveX = x;
 
-            req.move_y = y;
+            req.MoveY = y;
 
-            NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_WAR_MOVE);
+            NetManager.Instance.SendMsg(req, Cmd.ID.CMD.WarMove);
         }
 
     }

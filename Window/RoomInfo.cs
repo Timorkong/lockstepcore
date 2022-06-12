@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Cmd.ID;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,13 +16,13 @@ public class RoomInfo : SingleWindow<RoomInfo>
         UserPrefab.SetActive(false);
     }
 
-    public void Refresh(PROTOCOL_COMMON.RoomInfo room_info)
+    public void Refresh(PROTOCOLCOMMON.RoomInfo room_info)
     {
         Util.DestroyAllChildren(UserParent);
 
-        RoomName.text = room_info.room_name;
+        RoomName.text = room_info.RoomName;
 
-        foreach (var userInfo in room_info.user_list)
+        foreach (var userInfo in room_info.UserList)
         {
             GameObject prefab = GameObject.Instantiate(UserPrefab, UserParent.transform);
 
@@ -33,7 +30,7 @@ public class RoomInfo : SingleWindow<RoomInfo>
 
             Text UserName = prefab.transform.FindNode<Text>("UserName/UserName");
 
-            UserName.text = userInfo.user_name;
+            UserName.text = userInfo.UserName;
         }
     }
 
@@ -46,14 +43,14 @@ public class RoomInfo : SingleWindow<RoomInfo>
     {
         Hide();
 
-        command_req.CMD_LEAVE_ROOM_REQ();
+        command_req.LeaveRoomReq();
 
         RoomList.Instance.Show();
     }
 
     public void OnClickEnterGame()
     {
-        command_req.CMD_ENTER_GAME_REQ();
+        command_req.EnterGameReq();
 
         Hide();
 

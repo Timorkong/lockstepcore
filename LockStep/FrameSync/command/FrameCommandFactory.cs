@@ -10,13 +10,13 @@ public class FrameCommandFactory
 
         switch ((Cmd.ID.CMD)msg.msgID)
         {
-            case Cmd.ID.CMD.CMD_WAR_MOVE:
+            case Cmd.ID.CMD.WarMove:
                 {
                     ret = new MoveFrameCommand(msg);
 
                     break;
                 }
-            case Cmd.ID.CMD.CMD_WAR_SEQUENCE_NOTICE:
+            case Cmd.ID.CMD.WarSequenceNotice:
                 {
                     ret = new SyncSequenceCommand(msg);
 

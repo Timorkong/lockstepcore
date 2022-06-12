@@ -15,9 +15,9 @@ public class SingleWindow<T> : MonoSingleton<T>, IMutexWindow where T : UnityEng
 {
     protected GameObject window;
 
-    private Cmd.ID.CMD curShowCMD = Cmd.ID.CMD.CMD_INVALID;
+    private Cmd.ID.CMD curShowCMD = Cmd.ID.CMD.Invaild;
 
-    public virtual Cmd.ID.CMD ShowCMD { get { return Cmd.ID.CMD.CMD_INVALID; } }
+    public virtual Cmd.ID.CMD ShowCMD { get { return Cmd.ID.CMD.Invaild; } }
 
     public virtual void Request() { }
 
@@ -34,7 +34,7 @@ public class SingleWindow<T> : MonoSingleton<T>, IMutexWindow where T : UnityEng
     {
         if (IsVisible) return;
 
-        if (needSendCmd && this.ShowCMD != Cmd.ID.CMD.CMD_INVALID)
+        if (needSendCmd && this.ShowCMD.Equals(Cmd.ID.CMD.Invaild) == false)
         {
             NetProcess.Instance.onMSGDeserialized += OnMSGDeserialized;
 
@@ -50,9 +50,9 @@ public class SingleWindow<T> : MonoSingleton<T>, IMutexWindow where T : UnityEng
 
     private void OnMSGDeserialized(Cmd.ID.CMD cmd)
     {
-        if (cmd == Cmd.ID.CMD.CMD_INVALID) return;
+        if (cmd == Cmd.ID.CMD.Invaild) return;
 
-        if (ShowCMD != cmd) return;
+        if (ShowCMD.Equals(cmd)) return;
 
         NetProcess.Instance.onMSGDeserialized -= OnMSGDeserialized;
 

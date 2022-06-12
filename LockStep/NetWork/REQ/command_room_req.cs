@@ -3,39 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 using PROTOCOL;
-using PROTOCOL_ROOM;
+using PROTOCOLROOM;
 
 public partial class command_req
 {
-    public static void CMD_ROOM_LIST_REQ()
+    public static void RoomListReq()
     {
-        CMD_ROOM_LIST_REQ req = new CMD_ROOM_LIST_REQ();
+        RoomListReq req = new RoomListReq();
 
-        var sendLen = NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_ROOM_LIST_REQ);
+        var sendLen = NetManager.Instance.SendMsg(req, Cmd.ID.CMD.RoomListReq);
     }
 
-    public static void CMD_CREATE_ROOM_REQ()
+    public static void CreateRoomReq()
     {
-        CMD_CREATE_ROOM_REQ req = new CMD_CREATE_ROOM_REQ();
+        CreateRoomReq req = new CreateRoomReq();
 
-        req.room_name = "default player enter room";
+        req.RoomName = "default player enter room";
 
-        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_CREATE_ROOM_REQ);
+        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CreateRoomReq);
     }
 
-    public static void CMD_LEAVE_ROOM_REQ()
+    public static void LeaveRoomReq()
     {
-        CMD_LEAVE_ROOM_REQ req = new CMD_LEAVE_ROOM_REQ();
+        LeaveRoomReq req = new LeaveRoomReq();
 
-        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_LEAVE_ROOM_REQ);
+        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.LeaveRoomReq);
     }
 
-    public static void CMD_JOIN_ROOM_REQ(int room_unique_id)
+    public static void JoinRoomReq(int room_unique_id)
     {
-        CMD_JOIN_ROOM_REQ req = new CMD_JOIN_ROOM_REQ();
+        JoinRoomReq req = new JoinRoomReq();
 
-        req.room_unquie_id = room_unique_id;
+        req.RoomUnquieId = room_unique_id;
 
-        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.CMD_JOIN_ROOM_REQ);
+        NetManager.Instance.SendMsg(req, Cmd.ID.CMD.JoinRoomReq);
     }
 }

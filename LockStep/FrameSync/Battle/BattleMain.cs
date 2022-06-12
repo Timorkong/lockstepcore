@@ -10,7 +10,7 @@ public class BattleMain
 
     protected static BattleMain mBattleMain = null;
 
-    public static PROTOCOL_COMMON.pre_battle_data data = null;
+    public static PROTOCOLCOMMON.PreBattleData data = null;
 
     public static BattleMain Instance
     {

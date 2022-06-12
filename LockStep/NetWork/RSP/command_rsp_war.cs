@@ -1,35 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Cmd.ID;
-using PROTOCOL;
-using ProtoBuf;
-using PROTOCOL_WAR;
+using PROTOCOLWAR;
 
 public partial class command_rsp
 {
-    [MessageHandle((uint)CMD.CMD_ENTER_GAME_RSP)]
-    public static void CMD_ENTER_GAME_RSP(MsgData msg)
+    [MessageHandle((uint)CMD.EnterGameRsp)]
+    public static void EnterGameRsp(MsgData msg)
     {
-        CMD_ENTER_GAME_RSP rsp = NetUtil.DeserializeMsg<CMD_ENTER_GAME_RSP>(msg);
+        EnterGameRsp rsp = NetUtil.DeserializeMsg<EnterGameRsp>(msg);
 
         RoomInfo.Instance.Hide();
 
         Loading.Instance.Show();
 
-        BattleMain.data = rsp.data;
+        BattleMain.data = rsp.Data;
 
         ClientSystemManager.Instance.SwitchSystem<ClientSystemBattle>();
     }
 
-    [MessageHandle((uint)CMD.CMD_START_GAME_RSP)]
-    public static void CMD_START_GAME_RSP(MsgData msg)
+    [MessageHandle((uint)CMD.StartGameRsp)]
+    public static void StartGameRsp(MsgData msg)
     {
-        CMD_START_GAME_RSP rsp = NetUtil.DeserializeMsg<CMD_START_GAME_RSP>(msg);
+        StartGameRsp rsp = NetUtil.DeserializeMsg<StartGameRsp>(msg);
 
-        foreach(var user in rsp.room_info.user_list)
+        foreach(var user in rsp.RoomInfo.UserList)
         {
-            BattleMain.Instance.mBattle.CreateEntity(user.user_seat);
+            BattleMain.Instance.mBattle.CreateEntity(user.UserSeat);
         }
 
         ClientSystemManager.Instance.CurrentSystem.curState = EnumClienSystemState.onTick;

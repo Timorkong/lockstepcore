@@ -131,7 +131,7 @@ public class FrameSync : Singleton<FrameSync>
     {
         IFrameCommand frameCmd = FrameCommandFactory.CreateCommand(msg);
 
-        if (frameCmd.CmdId == Cmd.ID.CMD.CMD_WAR_SEQUENCE_NOTICE)
+        if (frameCmd.CmdId == Cmd.ID.CMD.WarSequenceNotice)
         {
             SetServerFrame(frameCmd.Sequence);
         }
@@ -183,7 +183,7 @@ public class FrameSync : Singleton<FrameSync>
         {
             var cmd = frameQueue.Dequeue();
 
-            if (cmd.CmdId == Cmd.ID.CMD.CMD_WAR_SEQUENCE_NOTICE)
+            if (cmd.CmdId == Cmd.ID.CMD.WarSequenceNotice)
             {
                 curFrame = cmd.Sequence;
 

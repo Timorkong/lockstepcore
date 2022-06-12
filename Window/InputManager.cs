@@ -29,7 +29,7 @@ public class InputManager : SingleWindow<InputManager>
 
             last_y = my;
 
-            command_req.CMD_WAR_MOVE_REQ(mx, my);
+            command_req.WarMove(mx, my);
         }
     }
 }

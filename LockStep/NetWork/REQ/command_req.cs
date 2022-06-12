@@ -8,14 +8,14 @@ public partial class command_req
 {
     static int id = 0;
 
-    public static void CMD_HEART_BEAT_REQ()
+    public static void HeartBeatReq()
     {
-        CMD_HEART_BEAT_REQ req = new CMD_HEART_BEAT_REQ();
+        HeartBeatReq req = new HeartBeatReq();
 
-        req.id = id ++;
+        req.Id = id ++;
 
-        req.name = "fdafdafdafd";
+        req.Name = "fdafdafdafd";
 
-        var sendLen = NetManager.Instance.SendMsg<CMD_HEART_BEAT_REQ>(req, Cmd.ID.CMD.CMD_HEART_BEAT_REQ);
+        var sendLen = NetManager.Instance.SendMsg<HeartBeatReq>(req, Cmd.ID.CMD.HeartBeatReq);
     }
 }

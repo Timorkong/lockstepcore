@@ -34,7 +34,7 @@ public class GeScence
 
     IEnumerator IE_LoadScene()
     {
-        var op = Addressables.LoadSceneAsync(BattleMain.data.level_name);
+        var op = Addressables.LoadSceneAsync(BattleMain.data.LevelName);
 
         yield return op;
 
@@ -57,6 +57,6 @@ public class GeScence
     {
         mCanUpdate = true;
 
-        command_req.CMD_START_GAME_REQ();
+        command_req.StartGameReq();
     }
 }

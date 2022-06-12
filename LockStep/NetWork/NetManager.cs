@@ -1,3 +1,4 @@
+using Google.Protobuf;
 using System.IO;
 using UnityEngine;
 
@@ -46,7 +47,7 @@ public class NetManager : MonoSingleton<NetManager>
         this.mSocket.DisConnect();
     }
 
-    public int SendMsg<T>(T msg, Cmd.ID.CMD cmd, bool bSyncFrame = false)
+    public int SendMsg<T>(T msg, Cmd.ID.CMD cmd, bool bSyncFrame = false) where T:IMessage
     {
         int ret = -1;
 
@@ -54,12 +55,16 @@ public class NetManager : MonoSingleton<NetManager>
 
         try
         {
+            /*
             using (MemoryStream stream = new MemoryStream())
             {
-                ProtoBuf.Serializer.Serialize<T>(stream, msg);
+                //    ProtoBuf.Serializer.Serialize<T>(stream, msg);
 
-                bytes = stream.ToArray();
+                //   bytes = stream.ToArray();
+               
             }
+            */
+            bytes = NetUtil.Serialize<T>(msg);
         }
         catch (System.Exception e)
         {
