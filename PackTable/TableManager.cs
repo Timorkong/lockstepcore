@@ -7,7 +7,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public abstract class TableManager<TableArrayT, T, K, T_1> : Singleton<T_1>, IEnumerable where TableArrayT : IMessage, new() where T_1: new() 
+public abstract class TableManager<TableArrayT, T, K, T_1> : Singleton<T_1>, IEnumerable where TableArrayT : IMessage<TableArrayT>, new() where T_1: new() 
 { 
     /****************  Members  ****************/
     public TableArrayT array;
@@ -117,10 +117,8 @@ public abstract class TableManager<TableArrayT, T, K, T_1> : Singleton<T_1>, IEn
     protected virtual void OnAllTablesLoaded() { }
 
     [System.Reflection.Obfuscation(Exclude = true, Feature = "renaming")]
-    public void OnResourceLoaded(AssetReference res)
+    public void OnResourceLoaded(byte[] raw_data)
     {
-        /*
-        byte[] raw_data = null;
         byte[] data = new byte[raw_data.Length - 3];
         for (int i = 0; i < raw_data.Length - 3; data[i] = raw_data[i + 3], ++i) ;
         array = NetUtil.Deserialize<TableArrayT>(data,false);
@@ -161,7 +159,14 @@ public abstract class TableManager<TableArrayT, T, K, T_1> : Singleton<T_1>, IEn
                 Debug.LogError(array.ToString() + " does not has \"rows" + key + " exist!");
             }
         }
-        */
-        
+    }
+}
+
+[System.Reflection.Obfuscation(ApplyToMembers = false, Exclude = true, Feature = "renaming")]
+public class AVATARTableManager : TableManager<Table.AVATAR_ARRAY, Table.AVATAR, uint, AVATARTableManager>
+{
+    public override uint GetKey(Table.AVATAR table)
+    {
+        return table.Id;
     }
 }
